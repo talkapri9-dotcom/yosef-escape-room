@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>חדר הבריחה – סיפורי יוסף</title>
+  <style>
+    /* ======================================================
+       BASE & LAYOUT
+    ====================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      background: linear-gradient(145deg, #0d1b2a 0%, #1b2a4a 50%, #162035 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px 12px 40px;
+      direction: rtl;
+    }
+
+    /* ======================================================
+       SCREENS – only one visible at a time
+    ====================================================== */
+    .screen { display: none; width: 100%; max-width: 680px; }
+    .screen.active { display: block; }
+
+    /* ======================================================
+       CARD CONTAINER
+    ====================================================== */
+    .card {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 32px 28px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.45);
+    }
+
+    /* ======================================================
+       OPENING SCREEN
+    ====================================================== */
+    .open-top { text-align: center; margin-bottom: 22px; }
+
+    .lock-icon { font-size: 3.6em; margin-bottom: 8px; }
+
+    .main-title {
+      font-size: 2.4em;
+      font-weight: 900;
+      color: #0d1b2a;
+      line-height: 1.1;
+    }
+
+    .main-subtitle {
+      font-size: 1.35em;
+      font-weight: 700;
+      color: #b8861a;
+      margin: 4px 0 2px;
+    }
+
+    .bible-ref {
+      font-size: 0.95em;
+      color: #777;
+      margin-bottom: 16px;
+    }
+
+    .tagline {
+      background: #f5f7ff;
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: #444;
+      font-size: 1em;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .instructions {
+      background: #fffbee;
+      border-right: 4px solid #c9a227;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 26px;
+      text-align: right;
+    }
+
+    .instructions h3 {
+      color: #0d1b2a;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+
+    .instructions li {
+      list-style: none;
+      padding: 5px 0;
+      color: #444;
+      font-size: 0.93em;
+      line-height: 1.5;
+    }
+
+    .instructions li::before { content: "◆ "; color: #c9a227; font-size: 0.75em; }
+
+    /* ======================================================
+       BUTTONS
+    ====================================================== */
+    .btn {
+      display: inline-block;
+      padding: 13px 38px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.05em;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform .15s, box-shadow .15s;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,.18); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-gold { background: linear-gradient(135deg,#c9a227,#e8c060); color: #0d1b2a; }
+    .btn-green { background: linear-gradient(135deg,#27ae60,#2ecc71); color: #fff; }
+
+    /* ======================================================
+       PROGRESS BAR & ROOM HEADER
+    ====================================================== */
+    .progress-track {
+      background: #e8e8e8;
+      border-radius: 8px;
+      height: 7px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: linear-gradient(90deg,#c9a227,#e8c060);
+      height: 100%;
+      border-radius: 8px;
+      transition: width .5s ease;
+    }
+
+    .room-counter {
+      font-size: 0.82em;
+      color: #999;
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: .03em;
+    }
+
+    .room-emoji { font-size: 2.1em; text-align: center; margin-bottom: 8px; }
+
+    .room-title {
+      font-size: 1.42em;
+      font-weight: 800;
+      color: #0d1b2a;
+      margin-bottom: 10px;
+    }
+
+    .room-desc {
+      font-size: 0.93em;
+      color: #555;
+      line-height: 1.7;
+      background: #f5f7ff;
+      border-right: 3px solid #0d1b2a;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-bottom: 22px;
+    }
+
+    /* ======================================================
+       COLLECTED LETTERS STRIP
+    ====================================================== */
+    .letters-strip {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .letter-box {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 9px;
+      font-size: 1.25em;
+      font-weight: 900;
+      border: 2px dashed #ccc;
+      color: #ccc;
+      background: #fafafa;
+    }
+
+    .letter-box.lit {
+      background: linear-gradient(135deg,#c9a227,#e8c060);
+      border: 2px solid #c9a227;
+      color: #0d1b2a;
+    }
+
+    /* ======================================================
+       PUZZLE AREA
+    ====================================================== */
+    .puzzle-zone { margin-bottom: 18px; }
+
+    .q-text {
+      font-size: 1.05em;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    /* Multiple choice buttons */
+    .mc-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 9px;
+      border: 2px solid #e0e0e0;
+      border-radius: 11px;
+      background: #fff;
+      font-family: inherit;
+      font-size: 0.94em;
+      color: #333;
+      text-align: right;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+      line-height: 1.5;
+    }
+
+    .mc-btn:hover { border-color: #c9a227; background: #fffbee; }
+    .mc-btn.chosen { border-color: #0d1b2a; background: #eef1ff; }
+    .mc-btn.correct-ans { border-color: #27ae60; background: #eafaf1; }
+    .mc-btn.wrong-ans { border-color: #e74c3c; background: #fdf0ef; }
+
+    /* Ordering */
+    .order-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 14px;
+      margin-bottom: 9px;
+      border: 2px solid #e0e0e0;
+      border-radius: 11px;
+      background: #fff;
+    }
+
+    .order-text { flex: 1; font-size: 0.93em; color: #333; line-height: 1.45; }
+
+    .num-select {
+      padding: 6px 8px;
+      border: 2px solid #c9a227;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9em;
+      background: #fff;
+      min-width: 56px;
+      cursor: pointer;
+    }
+
+    /* Matching */
+    .match-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .match-term {
+      font-weight: 700;
+      color: #0d1b2a;
+      background: #eef1ff;
+      padding: 8px 13px;
+      border-radius: 9px;
+      font-size: 0.93em;
+      min-width: 120px;
+      white-space: nowrap;
+    }
+
+    .match-select {
+      flex: 1;
+      min-width: 200px;
+      padding: 8px 12px;
+      border: 2px solid #c9a227;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: 0.9em;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    /* Checkboxes */
+    .cb-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 14px;
+      margin-bottom: 9px;
+      border: 2px solid #e0e0e0;
+      border-radius: 11px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .cb-row input[type="checkbox"] {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: #c9a227;
+      cursor: pointer;
+    }
+
+    .cb-label { font-size: 0.93em; color: #333; line-height: 1.5; cursor: pointer; }
+
+    /* ======================================================
+       FEEDBACK & CLUE
+    ====================================================== */
+    .feedback {
+      display: none;
+      padding: 14px 16px;
+      border-radius: 11px;
+      margin-bottom: 14px;
+      font-size: 0.93em;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .feedback.ok { display: block; background: #eafaf1; border: 2px solid #27ae60; color: #1a6640; }
+    .feedback.err { display: block; background: #fdf0ef; border: 2px solid #e74c3c; color: #b03020; }
+
+    .clue-box {
+      display: none;
+      text-align: center;
+      background: linear-gradient(135deg,#0d1b2a,#1b2a4a);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .clue-letter { font-size: 4em; font-weight: 900; color: #c9a227; display: block; line-height: 1.1; }
+    .clue-caption { font-size: 0.85em; color: #aac; margin-top: 4px; }
+
+    /* ======================================================
+       SUBMIT / NEXT ROW
+    ====================================================== */
+    .action-row { text-align: center; margin-top: 4px; }
+
+    /* ======================================================
+       FINAL CODE SCREEN
+    ====================================================== */
+    .code-intro { text-align: center; margin-bottom: 22px; }
+    .code-intro h2 { font-size: 1.5em; color: #0d1b2a; margin-bottom: 6px; }
+    .code-intro p { color: #555; font-size: 0.94em; }
+
+    .code-input {
+      font-size: 1.6em;
+      font-weight: 700;
+      padding: 14px;
+      border: 3px solid #c9a227;
+      border-radius: 14px;
+      text-align: center;
+      width: 100%;
+      font-family: inherit;
+      letter-spacing: 6px;
+      direction: rtl;
+      margin-bottom: 14px;
+    }
+
+    /* ======================================================
+       SUCCESS SCREEN
+    ====================================================== */
+    .success-icon { font-size: 4em; text-align: center; margin-bottom: 14px; }
+    .success-title { font-size: 2em; font-weight: 900; text-align: center; color: #0d1b2a; margin-bottom: 6px; }
+    .success-tag { text-align: center; color: #777; margin-bottom: 20px; font-size: 0.95em; }
+
+    .code-reveal {
+      background: linear-gradient(135deg,#0d1b2a,#1b2a4a);
+      color: #c9a227;
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: 900;
+      letter-spacing: 6px;
+      margin-bottom: 20px;
+    }
+
+    .summary-box {
+      background: #f5f7ff;
+      border-radius: 14px;
+      padding: 20px 22px;
+      line-height: 1.8;
+      color: #333;
+      font-size: 0.93em;
+    }
+
+    .summary-box h3 { color: #0d1b2a; margin-bottom: 10px; font-size: 1.05em; }
+
+    .value-tags { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 14px; }
+
+    .tag {
+      background: #fff;
+      border: 2px solid #c9a227;
+      color: #0d1b2a;
+      border-radius: 50px;
+      padding: 5px 15px;
+      font-size: 0.87em;
+      font-weight: 700;
+    }
+
+    /* ======================================================
+       RESPONSIVE
+    ====================================================== */
+    @media (max-width: 480px) {
+      .card { padding: 20px 14px; }
+      .main-title { font-size: 1.85em; }
+      .match-row { flex-direction: column; }
+      .match-term { min-width: 100%; }
+      .match-select { min-width: 100%; }
+      .code-input { font-size: 1.3em; letter-spacing: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========================================================
+     SCREEN 1: OPENING
+======================================================== -->
+<div id="s-open" class="screen active">
+  <div class="card">
+    <div class="open-top">
+      <div class="lock-icon">🔐</div>
+      <div class="main-title">חדר הבריחה</div>
+      <div class="main-subtitle">סיפורי יוסף</div>
+      <div class="bible-ref">בראשית ל״ז – מ״ה</div>
+      <div class="tagline">
+        מסע מן הבור אל הארמון –<br>
+        האם תצליחו לפצח את הקוד הסודי?
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h3>📋 הוראות משחק:</h3>
+      <ul>
+        <li>המשחק כולל <strong>6 חדרים</strong>, כל אחד עם חידה על סיפור יוסף</li>
+        <li>בכל חדר שתפצחו תקבלו <strong>אות אחת</strong> לקוד הסודי</li>
+        <li>בסוף צרפו את כל <strong>6 האותות</strong> לקוד אחד ופצחו את הסגר</li>
+        <li>קראו כל שאלה בעיון לפני שאתם עונים</li>
+      </ul>
+    </div>
+
+    <div style="text-align:center;">
+      <button class="btn btn-gold" onclick="startGame()">התחל 🚀</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     SCREEN 2: ROOM (built dynamically)
+======================================================== -->
+<div id="s-room" class="screen">
+  <div class="card">
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+
+    <div class="room-counter" id="room-counter"></div>
+    <div class="letters-strip" id="letters-strip"></div>
+    <div class="room-emoji" id="room-emoji"></div>
+    <div class="room-title" id="room-title"></div>
+    <div class="room-desc" id="room-desc"></div>
+
+    <!-- Puzzle injected here -->
+    <div class="puzzle-zone" id="puzzle-zone"></div>
+
+    <!-- Feedback message -->
+    <div class="feedback" id="feedback"></div>
+
+    <!-- Clue letter reveal -->
+    <div class="clue-box" id="clue-box">
+      <span class="clue-letter" id="clue-letter"></span>
+      <div class="clue-caption">האות שלכם לקוד הסודי</div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-gold" id="submit-btn" onclick="submitAnswer()">בדוק תשובה ✔</button>
+      <button class="btn btn-green" id="next-btn" style="display:none" onclick="goNext()">המשך ←</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     SCREEN 3: FINAL CODE ENTRY
+======================================================== -->
+<div id="s-code" class="screen">
+  <div class="card">
+    <div class="code-intro">
+      <div style="font-size:2.4em; margin-bottom:10px;">🔑</div>
+      <h2>הקוד הסודי</h2>
+      <p>אספתם את כל 6 האותות! צרפו אותן לקוד אחד והזינו אותו:</p>
+    </div>
+
+    <div class="letters-strip" id="code-letters" style="justify-content:center; margin-bottom:24px;"></div>
+
+    <div style="text-align:center;">
+      <p style="font-weight:700; margin-bottom:10px; color:#333;">הזינו את הקוד (6 אותות ביחד, ללא רווחים):</p>
+      <input type="text" class="code-input" id="code-input"
+             placeholder="הקלידו כאן…" maxlength="10" dir="rtl"
+             autocomplete="off" />
+      <div class="feedback" id="code-fb"></div>
+      <button class="btn btn-gold" onclick="checkCode()">פצח את הקוד! 🔓</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     SCREEN 4: SUCCESS
+======================================================== -->
+<div id="s-win" class="screen">
+  <div class="card">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">כל הכבוד!</div>
+    <div class="success-tag">
+      הצלחתם לברוח מחדר הבריחה של סיפורי יוסף!
+    </div>
+
+    <div class="code-reveal">יוסף חי</div>
+
+    <div class="summary-box">
+      <h3>📖 מסע יוסף – מן הבור אל הארמון</h3>
+      <p>
+        יוסף, בן האהוב של יעקב, נמכר על ידי אחיו בשל קנאה ושנאה.
+        הוא הגיע למצרים כעבד, ואחר כך נאסר שלא בצדק – ובכל זאת לא ויתר.
+        בזכות אמונתו, יושרו, וכישרונו לפתור חלומות, עלה יוסף מבית הסוהר
+        לארמון פרעה ונעשה למשנה למלך כל מצרים.
+      </p>
+      <br>
+      <p>
+        כאשר אחיו ירדו למצרים לקנות אוכל, יוסף הכיר אותם – אך הם לא הכירוהו.
+        יוסף בחן אותם: האם השתנו? נאומו המרגש של יהודה, שהציע את עצמו
+        כעבד תחת בנימין, הוכיח שכן. <strong>״אני יוסף!״</strong> – בכה יוסף ואחז בהם.
+        לא נקמה, אלא סליחה ואהבה.
+      </p>
+      <div class="value-tags">
+        <span class="tag">⚠️ קנאה משחיתה</span>
+        <span class="tag">🔄 שינוי ותשובה</span>
+        <span class="tag">🤝 אחריות אחים</span>
+        <span class="tag">💛 סליחה היא כוח</span>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:22px;">
+      <button class="btn btn-gold" onclick="restartGame()">שחק שוב 🔄</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     JAVASCRIPT
+======================================================== -->
+<script>
+/* ============================================================
+   GAME DATA – 6 rooms, one puzzle each
+   Clue letters in order: י, ו, ס, ף, ח, י → יוסף חי
+============================================================ */
+const ROOMS = [
+
+  /* ---- ROOM 1: חלומות יוסף ושנאת האחים ---- */
+  {
+    emoji: "✨",
+    title: "חלומות יוסף ושנאת האחים",
+    desc: "יוסף, בן שבע עשרה, הוא ילד האהוב של אביו יעקב. יעקב עשה לו כתונת פסים מיוחדת. האחים שנאו אותו. ויוסף חלם שני חלומות...",
+    clue: "י",
+    type: "mc",
+    question: "מה חלם יוסף בשני חלומותיו?",
+    options: [
+      "חלם על פרות שמנות ורזות ועל שיבולים ריאות",
+      "חלם שהוא נהיה מלך על כל מצרים",
+      "חלם שאלומות אחיו משתחוות לאלומתו, ושמש, ירח ואחד עשר כוכבים משתחווים לו",
+      "חלם שאביו עושה לו כתונת פסים זהב"
+    ],
+    correct: 2,
+    explain: "נכון! יוסף חלם שני חלומות: ראשית – אלומות האחים השתחוו לאלומתו. שנית – שמש, ירח ואחד עשר כוכבים משתחווים לו. אביו וגם האחים כעסו – אבל בסוף הסיפור החלומות התגשמו!"
+  },
+
+  /* ---- ROOM 2: הבור והמכירה ---- */
+  {
+    emoji: "🕳️",
+    title: "הבור והמכירה",
+    desc: "האחים רועים בשכם. יעקב שולח את יוסף לבדוק שלומם. כאשר רואים אותו האחים מרחוק – הם מתנכלים לו. הבחרו את הסדר הנכון של האירועים:",
+    clue: "ו",
+    type: "order",
+    question: "סדרו את האירועים לפי הסדר בו הם מופיעים בספר בראשית (1 = ראשון, 5 = אחרון):",
+    items: [
+      "האחים רואים את יוסף מגיע ומחליטים להרע לו",
+      "האחים משליכים את יוסף לבור ריק",
+      "שיירת ישמעאלים עוברת דרך",
+      "יוסף נמכר לישמעאלים בעשרים כסף",
+      "האחים טובלים את כתונת הפסים בדם עז ושולחים לאביהם"
+    ],
+    // correct[i] = the position number (1–5) that item i should get
+    correct: [1, 2, 3, 4, 5],
+    explain: "סדר מושלם! האחים רואים את יוסף ← זורקים אותו לבור ← שיירה עוברת ← מוכרים אותו ← טובלים את הכתונת בדם. יעקב קרע את בגדיו ובכה על בנו."
+  },
+
+  /* ---- ROOM 3: יוסף בבית פוטיפר ובבית הסוהר ---- */
+  {
+    emoji: "⛓️",
+    title: "יוסף בבית פוטיפר ובבית הסוהר",
+    desc: "יוסף נמכר למצרים ונקנה על ידי פוטיפר, שר הטבחים של פרעה. ה׳ היה עם יוסף ויצלח בידיו – אך גם כאן לא נחסרו צרות.",
+    clue: "ס",
+    type: "match",
+    question: "התאימו כל דמות לתיאור הנכון שלה:",
+    pairs: [
+      {
+        term: "פוטיפר",
+        answers: [
+          "שר הטבחים של פרעה שקנה את יוסף",
+          "האישה שהאשימה את יוסף לשווא",
+          "חלם על גפן עם שלושה שריגים",
+          "חלם על שלושה סלי לחם על ראשו"
+        ],
+        correct: 0
+      },
+      {
+        term: "אשת פוטיפר",
+        answers: [
+          "שר הטבחים של פרעה שקנה את יוסף",
+          "האישה שהאשימה את יוסף לשווא",
+          "חלם על גפן עם שלושה שריגים",
+          "חלם על שלושה סלי לחם על ראשו"
+        ],
+        correct: 1
+      },
+      {
+        term: "שר המשקים",
+        answers: [
+          "שר הטבחים של פרעה שקנה את יוסף",
+          "האישה שהאשימה את יוסף לשווא",
+          "חלם על גפן עם שלושה שריגים",
+          "חלם על שלושה סלי לחם על ראשו"
+        ],
+        correct: 2
+      },
+      {
+        term: "שר האופים",
+        answers: [
+          "שר הטבחים של פרעה שקנה את יוסף",
+          "האישה שהאשימה את יוסף לשווא",
+          "חלם על גפן עם שלושה שריגים",
+          "חלם על שלושה סלי לחם על ראשו"
+        ],
+        correct: 3
+      }
+    ],
+    explain: "מצוין! פוטיפר – קנה את יוסף ← אשתו – האשימה אותו שקר ← שר המשקים – חלם על גפן ← שר האופים – חלם על סלי לחם. יוסף פתר את שני החלומות בבית הסוהר."
+  },
+
+  /* ---- ROOM 4: חלומות פרעה ועליית יוסף ---- */
+  {
+    emoji: "👑",
+    title: "חלומות פרעה ועליית יוסף",
+    desc: "שנתיים לאחר שיצא שר המשקים מהכלא, פרעה חלם שני חלומות מוזרים. כל חרטומי מצרים לא הצליחו לפתור אותם – עד שנזכר שר המשקים ביוסף.",
+    clue: "ף",
+    type: "mc",
+    question: "מה פירוש חלומות פרעה ומה קרה בעקבות פתרונם?",
+    options: [
+      "שבע שנות רעב יבואו תחילה ואחר כך שבע שנות שובע – ופרעה מינה את יוסף לאסוף מזון",
+      "שבע שנות שובע יבואו תחילה ואחריהן שבע שנות רעב – ופרעה מינה את יוסף לשליט על כל מצרים",
+      "הפרות הרזות מסמלות מגפה והשיבולים הדקות מסמלות מלחמה",
+      "רק שבע שנות שובע ללא רעב – ויוסף שוחרר מהכלא"
+    ],
+    correct: 1,
+    explain: "נכון! שבע שנות שובע → שבע שנות רעב קשות. שני חלומות = מסר אחד. יוסף הציע לאסוף אוכל בשנות השובע. פרעה מינה אותו למשנה למלך כל מצרים – מהכלא לארמון!"
+  },
+
+  /* ---- ROOM 5: האחים יורדים למצרים ---- */
+  {
+    emoji: "🌾",
+    title: "האחים יורדים למצרים",
+    desc: "הרעב פשה בכל הארצות. יעקב שולח את בניו למצרים לקנות אוכל – רק את בנימין הוא משאיר בבית. האחים מגיעים ומשתחווים בפני שליט מצרים...",
+    clue: "ח",
+    type: "cb",
+    question: "סמנו את כל המשפטים הנכונים (יכולים להיות כמה):",
+    items: [
+      { text: "יוסף הכיר את אחיו כאשר הם הגיעו למצרים", cor: true },
+      { text: "האחים הכירו מיד את יוסף ופחדו", cor: false },
+      { text: "בנימין נשאר בכנען עם יעקב בתחילה", cor: true },
+      { text: "שמעון נשאר כבן ערובה במצרים", cor: true },
+      { text: "יוסף גילה להם מיד שהוא אחיהם", cor: false },
+      { text: "יוסף האשים אותם שהם מרגלים", cor: true }
+    ],
+    explain: "כל הכבוד! יוסף הכיר אותם – הם לא הכירוהו. בנימין נשאר בכנען. שמעון נשאר כבן ערובה. יוסף האשים אותם במרגלות – כדי לבחון אם השתנו."
+  },
+
+  /* ---- ROOM 6: הגביע, נאום יהודה, והתגלות יוסף ---- */
+  {
+    emoji: "🏺",
+    title: "הגביע, נאום יהודה, והתגלות יוסף",
+    desc: "יוסף הסתיר את גביעו הכסף בשקו של בנימין. כאשר האחים כבר בדרך חזרה – הם נעצרו. הגביע נמצא. ובנימין עומד להיאסר...",
+    clue: "י",
+    type: "mc",
+    question: "מדוע נשא יהודה את נאומו ומה ביקש?",
+    options: [
+      "יהודה ניסה להוכיח שבנימין לא גנב ושהוא חף מפשע",
+      "יהודה הציע את עצמו כעבד תחת בנימין, כי ידע שאביו לא יוכל לשאת את אובדן בנימין",
+      "יהודה ביקש שיוסף ישחרר את כל האחים ויסלח להם",
+      "יהודה סיפר ליוסף את כל הסיפור על מכירתו"
+    ],
+    correct: 1,
+    explain: "מדויק! יהודה הבין שאביו לא יחיה אם בנימין לא ישוב. לכן הציע את עצמו כעבד – הוא לקח אחריות. זה השינוי הגדול! ויוסף, שלא יכול היה להתאפק, בכה ואמר: ״אני יוסף אחיכם!״ – רגע ההתגלות."
+  }
+];
+
+/* ============================================================
+   STATE
+============================================================ */
+let roomIdx = 0;
+let collected = [];   // clue letters gathered so far
+let solved = false;   // current room solved?
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function renderStrip(containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const b = document.createElement('div');
+    b.className = 'letter-box' + (collected[i] ? ' lit' : '');
+    b.textContent = collected[i] || String(i + 1);
+    el.appendChild(b);
+  }
+}
+
+function fb(type, msg) {
+  const el = document.getElementById('feedback');
+  el.className = 'feedback ' + type;
+  el.textContent = msg;
+}
+
+/* ============================================================
+   START / RESTART
+============================================================ */
+function startGame() {
+  roomIdx = 0;
+  collected = [];
+  solved = false;
+  show('s-room');
+  loadRoom();
+}
+
+function restartGame() {
+  startGame();
+}
+
+/* ============================================================
+   LOAD ROOM
+============================================================ */
+function loadRoom() {
+  const r = ROOMS[roomIdx];
+  solved = false;
+
+  // Progress bar
+  document.getElementById('progress-fill').style.width = (roomIdx / 6 * 100) + '%';
+  document.getElementById('room-counter').textContent = `חדר ${roomIdx + 1} מתוך 6`;
+
+  // Letters strip
+  renderStrip('letters-strip');
+
+  // Header info
+  document.getElementById('room-emoji').textContent = r.emoji;
+  document.getElementById('room-title').textContent = r.title;
+  document.getElementById('room-desc').textContent = r.desc;
+
+  // Reset feedback / clue / buttons
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback';
+  fb.textContent = '';
+  document.getElementById('clue-box').style.display = 'none';
+  document.getElementById('submit-btn').style.display = 'inline-block';
+  document.getElementById('next-btn').style.display = 'none';
+  document.getElementById('next-btn').textContent =
+    (roomIdx === ROOMS.length - 1) ? 'לקוד הסופי 🔑' : 'לחדר הבא ←';
+
+  // Build puzzle HTML
+  buildPuzzle(r);
+}
+
+/* ============================================================
+   BUILD PUZZLE
+============================================================ */
+function buildPuzzle(r) {
+  const zone = document.getElementById('puzzle-zone');
+  zone.innerHTML = '';
+  zone.dataset.type = r.type;
+
+  // Question label
+  const qEl = document.createElement('div');
+  qEl.className = 'q-text';
+  qEl.textContent = r.question;
+  zone.appendChild(qEl);
+
+  if (r.type === 'mc') {
+    zone.dataset.sel = '-1';
+    r.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'mc-btn';
+      btn.id = 'mc' + i;
+      btn.textContent = opt;
+      btn.onclick = () => pickMC(i, r.options.length);
+      zone.appendChild(btn);
+    });
+  }
+
+  else if (r.type === 'order') {
+    r.items.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'order-row';
+
+      const txt = document.createElement('span');
+      txt.className = 'order-text';
+      txt.textContent = item;
+
+      const sel = document.createElement('select');
+      sel.className = 'num-select';
+      sel.id = 'ord' + i;
+      const ph = document.createElement('option');
+      ph.value = '';
+      ph.textContent = '—';
+      sel.appendChild(ph);
+      for (let n = 1; n <= r.items.length; n++) {
+        const o = document.createElement('option');
+        o.value = n;
+        o.textContent = n;
+        sel.appendChild(o);
+      }
+
+      row.appendChild(txt);
+      row.appendChild(sel);
+      zone.appendChild(row);
+    });
+  }
+
+  else if (r.type === 'match') {
+    r.pairs.forEach((pair, i) => {
+      const row = document.createElement('div');
+      row.className = 'match-row';
+
+      const term = document.createElement('div');
+      term.className = 'match-term';
+      term.textContent = pair.term;
+
+      const sel = document.createElement('select');
+      sel.className = 'match-select';
+      sel.id = 'mat' + i;
+      const ph = document.createElement('option');
+      ph.value = '';
+      ph.textContent = '-- בחרו תיאור --';
+      sel.appendChild(ph);
+      pair.answers.forEach((ans, j) => {
+        const o = document.createElement('option');
+        o.value = j;
+        o.textContent = ans;
+        sel.appendChild(o);
+      });
+
+      row.appendChild(term);
+      row.appendChild(sel);
+      zone.appendChild(row);
+    });
+  }
+
+  else if (r.type === 'cb') {
+    r.items.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'cb-row';
+      row.onclick = () => {
+        const cb = document.getElementById('cb' + i);
+        cb.checked = !cb.checked;
+      };
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.id = 'cb' + i;
+      cb.onclick = e => e.stopPropagation();
+
+      const lbl = document.createElement('label');
+      lbl.className = 'cb-label';
+      lbl.htmlFor = 'cb' + i;
+      lbl.textContent = item.text;
+
+      row.appendChild(cb);
+      row.appendChild(lbl);
+      zone.appendChild(row);
+    });
+  }
+}
+
+/* ============================================================
+   PICK MULTIPLE-CHOICE OPTION
+============================================================ */
+function pickMC(idx, total) {
+  for (let i = 0; i < total; i++) {
+    const b = document.getElementById('mc' + i);
+    if (b) b.classList.toggle('chosen', i === idx);
+  }
+  document.getElementById('puzzle-zone').dataset.sel = idx;
+}
+
+/* ============================================================
+   SUBMIT ANSWER
+============================================================ */
+function submitAnswer() {
+  if (solved) return;
+
+  const r = ROOMS[roomIdx];
+  const zone = document.getElementById('puzzle-zone');
+  let correct = false;
+
+  /* -- MULTIPLE CHOICE -- */
+  if (r.type === 'mc') {
+    const sel = parseInt(zone.dataset.sel);
+    if (sel === -1) { fb('err', 'אנא בחרו תשובה אחת לפני הגשה.'); return; }
+    correct = (sel === r.correct);
+
+    // Mark answers visually
+    r.options.forEach((_, i) => {
+      const b = document.getElementById('mc' + i);
+      if (!b) return;
+      b.classList.remove('chosen');
+      if (i === r.correct) b.classList.add('correct-ans');
+      else if (i === sel && !correct) b.classList.add('wrong-ans');
+    });
+  }
+
+  /* -- ORDERING -- */
+  else if (r.type === 'order') {
+    const vals = [];
+    for (let i = 0; i < r.items.length; i++) {
+      const v = document.getElementById('ord' + i).value;
+      if (!v) { fb('err', 'אנא בחרו מספר לכל אירוע.'); return; }
+      vals.push(parseInt(v));
+    }
+    // Check for duplicate numbers
+    if (new Set(vals).size !== vals.length) {
+      fb('err', 'כל אירוע צריך מספר שונה – לא ניתן לחזור על אותו מספר.'); return;
+    }
+    correct = vals.every((v, i) => v === r.correct[i]);
+  }
+
+  /* -- MATCHING -- */
+  else if (r.type === 'match') {
+    const vals = [];
+    for (let i = 0; i < r.pairs.length; i++) {
+      const v = document.getElementById('mat' + i).value;
+      if (v === '') { fb('err', 'אנא התאימו את כל הדמויות.'); return; }
+      vals.push(parseInt(v));
+    }
+    correct = vals.every((v, i) => v === r.pairs[i].correct);
+  }
+
+  /* -- CHECKBOXES -- */
+  else if (r.type === 'cb') {
+    const vals = r.items.map((item, i) => document.getElementById('cb' + i).checked);
+    correct = vals.every((v, i) => v === r.items[i].cor);
+  }
+
+  /* -- HANDLE RESULT -- */
+  if (correct) {
+    solved = true;
+    collected.push(r.clue);
+    renderStrip('letters-strip');
+
+    fb('ok', '✅ ' + r.explain);
+    document.getElementById('clue-letter').textContent = r.clue;
+    document.getElementById('clue-box').style.display = 'block';
+    document.getElementById('submit-btn').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'inline-block';
+  } else {
+    fb('err', '❌ התשובה אינה מדויקת. נסו שוב!');
+  }
+}
+
+/* ============================================================
+   NEXT ROOM / GO TO CODE SCREEN
+============================================================ */
+function goNext() {
+  roomIdx++;
+  if (roomIdx >= ROOMS.length) {
+    // Show code entry screen
+    renderStrip('code-letters');
+    document.getElementById('code-input').value = '';
+    const cfb = document.getElementById('code-fb');
+    cfb.className = 'feedback';
+    cfb.textContent = '';
+    show('s-code');
+  } else {
+    loadRoom();
+  }
+}
+
+/* ============================================================
+   FINAL CODE CHECK
+============================================================ */
+function checkCode() {
+  const raw = document.getElementById('code-input').value;
+  const val = raw.replace(/\s/g, ''); // strip any spaces
+  const cfb = document.getElementById('code-fb');
+
+  if (val === 'יוסףחי') {
+    cfb.className = 'feedback ok';
+    cfb.textContent = '✅ הקוד נכון! יוסף חי – הוא שרד, עלה, וסלח!';
+    setTimeout(() => show('s-win'), 1400);
+  } else {
+    cfb.className = 'feedback err';
+    cfb.textContent = '❌ הקוד אינו נכון. רמז: חברו את 6 האותות שאספתם ביחד, ללא רווחים.';
+  }
+}
+</script>
+</body>
+</html>
