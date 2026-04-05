@@ -1,366 +1,360 @@
- <!DOCTYPE html>                            
-  <html lang="he" dir="rtl">                                                                                                                                                                                                                                                                                                 
-  <head>                                                                                                                                                                                                                                                                                                                   
-    <meta charset="UTF-8" />                                                                                                                                                                                                                                                                                                 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />                                                                                                                                                                                                                                                 
-    <title>שער ללימוד התנ״ך</title>                                                                                                                                                                                                                                                                                          
-    <link rel="preconnect" href="https://fonts.googleapis.com" />                                                                                                                                                                                                                                                            
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />                                                                                                                                                                                                                                                   
-    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700;900&family=Heebo:wght@300;400;600&display=swap" rel="stylesheet" />                                                                                                                                                                 
-    <style>                                                                                                                                                                                                                                                                                                                  
-      * {                                                                                                                                                                                                                                                                                                                  
-        box-sizing: border-box;                                                                                                                                                                                                                                                                                              
-        margin: 0;                                                                                                                                                                                                                                                                                                           
-        padding: 0;
-      }                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                           
-      body {
-        font-family: 'Heebo', Arial, sans-serif;
-        background-color: #0b1a35;
-        color: #ffffff;                                                                                                                                                                                                                                                                                                      
-        direction: rtl;
-        text-align: center;                                                                                                                                                                                                                                                                                                  
-        min-height: 100vh;                                                                                                                                                                                                                                                                                                   
-        display: flex;
-        flex-direction: column;                                                                                                                                                                                                                                                                                              
-      }                                                                                                                                                                                                                                                                                                                    
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>שער לימוד התנ״ך</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
-      /* ── NAV ── */                                                                                                                                                                                                                                                                                                        
-      nav {
-        background-color: #07112a;                                                                                                                                                                                                                                                                                           
-        border-bottom: 2px solid #c9a84c;                                                                                                                                                                                                                                                                                  
-        padding: 16px 32px;                                                                                                                                                                                                                                                                                                  
-        display: flex;
-        align-items: center;                                                                                                                                                                                                                                                                                                 
-        justify-content: space-between;                                                                                                                                                                                                                                                                                    
-        flex-wrap: wrap;                                                                                                                                                                                                                                                                                                     
-        gap: 12px;
-      }                                                                                                                                                                                                                                                                                                                      
-                  
-      .nav-logo {
-        font-family: 'Frank Ruhl Libre', serif;
-        font-size: 1.2rem;                                                                                                                                                                                                                                                                                                   
-        font-weight: 700;
-        color: #c9a84c;                                                                                                                                                                                                                                                                                                      
-      }           
-                                                                                                                                                                                                                                                                                                                             
-      .nav-links {
-        display: flex;                                                                                                                                                                                                                                                                                                       
-        gap: 8px; 
-        flex-wrap: wrap;
-        list-style: none;
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Heebo', Arial, sans-serif;
+      background-color: #0b1a35;
+      color: #ffffff;
+      direction: rtl;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    nav {
+      background-color: #07112a;
+      border-bottom: 2px solid #c9a84c;
+      padding: 16px 24px;
+    }
+
+    .nav-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: #d9c27b;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(201, 168, 76, 0.15);
+      color: #f3d778;
+    }
+
+    .hero {
+      padding: 80px 24px 60px;
+      background: linear-gradient(180deg, #0b1a35 0%, #102a5c 100%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding: 6px 18px;
+      border: 1px solid #c9a84c;
+      border-radius: 999px;
+      color: #d9c27b;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .hero h1 span {
+      color: #f0c960;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto 34px;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: #d8e3ff;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background-color: #f0c960;
+      color: #07112a;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 16px 42px;
+      border-radius: 999px;
+      transition: 0.2s;
+    }
+
+    .hero-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .divider-wrap {
+      background-color: #0f2040;
+      padding: 26px 0;
+    }
+
+    .divider {
+      width: 70px;
+      height: 4px;
+      background-color: #c9a84c;
+      margin: 0 auto;
+      border-radius: 2px;
+    }
+
+    .cards-section {
+      background-color: #0f2040;
+      padding: 70px 24px 80px;
+    }
+
+    .section-sub {
+      color: #9db3e0;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .section-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      margin-bottom: 38px;
+      color: #ffffff;
+    }
+
+    .cards-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .card,
+    .card-link {
+      background-color: #0b1a35;
+      border: 1px solid #1e3a6a;
+      border-top: 3px solid #c9a84c;
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: right;
+      min-height: 220px;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: 0.2s;
+    }
+
+    .card-link:hover {
+      transform: translateY(-4px);
+      border-color: #c9a84c;
+    }
+
+    .card {
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #c9a84c;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .card-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #f0d27a;
+      margin-bottom: 12px;
+    }
+
+    .card-desc {
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: #d3def6;
+    }
+
+    .welcome-section {
+      background-color: #07112a;
+      border-top: 1px solid #1e3a6a;
+      padding: 70px 24px;
+    }
+
+    .welcome-box {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .welcome-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-bottom: 20px;
+    }
+
+    .welcome-text {
+      font-size: 1.08rem;
+      line-height: 2;
+      color: #d3def6;
+      margin-bottom: 30px;
+    }
+
+    .welcome-btn {
+      display: inline-block;
+      text-decoration: none;
+      color: #f0d27a;
+      border: 2px solid #c9a84c;
+      border-radius: 999px;
+      padding: 14px 34px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .welcome-btn:hover {
+      background-color: #c9a84c;
+      color: #07112a;
+    }
+
+    footer {
+      background-color: #05091a;
+      border-top: 1px solid #1e3a6a;
+      padding: 24px;
+      color: #9ab0da;
+      font-size: 0.92rem;
+    }
+
+    footer strong {
+      color: #d9c27b;
+    }
+
+    @media (max-width: 700px) {
+      .nav-wrap {
         justify-content: center;
-      }                                                                                                                                                                                                                                                                                                                      
-   
-      .nav-links a {                                                                                                                                                                                                                                                                                                         
-        color: #d0c9b0;
-        text-decoration: none;                                                                                                                                                                                                                                                                                               
-        font-size: 0.95rem;
-        padding: 6px 14px;                                                                                                                                                                                                                                                                                                   
-        border-radius: 6px;
-        transition: background 0.2s, color 0.2s;                                                                                                                                                                                                                                                                             
-      }
-                                                                                                                                                                                                                                                                                                                             
-      .nav-links a:hover {                                                                                                                                                                                                                                                                                                   
-        background: rgba(201, 168, 76, 0.15);
-        color: #e8d080;                                                                                                                                                                                                                                                                                                      
-      }                                                                                                                                                                                                                                                                                                                      
-   
-      /* ── HERO ── */                                                                                                                                                                                                                                                                                                       
-      .hero {     
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;                                                                                                                                                                                                                                                                                             
-        padding: 80px 24px 60px;
-        background-color: #0b1a35;                                                                                                                                                                                                                                                                                           
-      }           
-                                                                                                                                                                                                                                                                                                                             
-      .hero-badge {
-        display: inline-block;                                                                                                                                                                                                                                                                                               
-        font-size: 0.85rem;
-        font-weight: 600;
-        letter-spacing: 0.14em;                                                                                                                                                                                                                                                                                              
-        color: #c9a84c;
-        border: 1px solid #c9a84c;                                                                                                                                                                                                                                                                                           
-        border-radius: 100px;                                                                                                                                                                                                                                                                                                
-        padding: 6px 20px;
-        margin-bottom: 36px;                                                                                                                                                                                                                                                                                                 
-      }           
-                                                                                                                                                                                                                                                                                                                             
-      .hero-title {
-        font-family: 'Frank Ruhl Libre', serif;                                                                                                                                                                                                                                                                              
-        font-size: clamp(2.8rem, 8vw, 5.5rem);
-        font-weight: 900;                                                                                                                                                                                                                                                                                                    
-        line-height: 1.1;
-        color: #ffffff;                                                                                                                                                                                                                                                                                                      
-        margin-bottom: 28px;
       }
 
-      .hero-title span {                                                                                                                                                                                                                                                                                                     
-        color: #e0c060;
-      }                                                                                                                                                                                                                                                                                                                      
-                  
-      .hero-subtitle {
-        font-size: clamp(1rem, 2.5vw, 1.3rem);
-        font-weight: 300;                                                                                                                                                                                                                                                                                                    
-        color: #c8d8f0;
-        line-height: 1.8;                                                                                                                                                                                                                                                                                                    
-        max-width: 600px;
-        margin-bottom: 56px;                                                                                                                                                                                                                                                                                                 
-      }                                                                                                                                                                                                                                                                                                                      
-   
-      .hero-btn {                                                                                                                                                                                                                                                                                                            
-        display: inline-block;
-        background-color: #c9a84c;
-        color: #07112a;
-        font-family: 'Heebo', Arial, sans-serif;                                                                                                                                                                                                                                                                             
-        font-size: 1.2rem;
-        font-weight: 700;                                                                                                                                                                                                                                                                                                    
-        padding: 18px 56px;
-        border-radius: 100px;                                                                                                                                                                                                                                                                                                
-        text-decoration: none;
-        border: 3px solid #c9a84c;
-        transition: background 0.22s, color 0.22s, transform 0.18s;                                                                                                                                                                                                                                                          
-        letter-spacing: 0.02em;                                                                                                                                                                                                                                                                                              
-      }                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                             
-      .hero-btn:hover {
-        background-color: transparent;
-        color: #e8d080;
-        transform: translateY(-3px);                                                                                                                                                                                                                                                                                         
-      }
-                                                                                                                                                                                                                                                                                                                             
-      /* ── DIVIDER ── */
-      .divider {
-        width: 64px;
-        height: 3px;                                                                                                                                                                                                                                                                                                         
-        background-color: #c9a84c;
-        margin: 0 auto;                                                                                                                                                                                                                                                                                                      
-        border-radius: 2px;
-      }
-                                                                                                                                                                                                                                                                                                                             
-      /* ── CARDS ── */
-      .cards-section {                                                                                                                                                                                                                                                                                                       
-        background-color: #0f2040;
-        padding: 72px 24px 80px;
-      }                                                                                                                                                                                                                                                                                                                      
-   
-      .section-title {                                                                                                                                                                                                                                                                                                       
-        font-family: 'Frank Ruhl Libre', serif;
-        font-size: clamp(1.6rem, 4vw, 2.4rem);                                                                                                                                                                                                                                                                               
-        font-weight: 700;
-        color: #ffffff;                                                                                                                                                                                                                                                                                                      
-        margin-bottom: 12px;
-      }                                                                                                                                                                                                                                                                                                                      
-   
-      .section-sub {                                                                                                                                                                                                                                                                                                         
-        font-size: 0.9rem;
-        color: #8aa8cc;
-        letter-spacing: 0.12em;                                                                                                                                                                                                                                                                                              
-        font-weight: 600;
-        margin-bottom: 16px;                                                                                                                                                                                                                                                                                                 
-      }                                                                                                                                                                                                                                                                                                                      
-   
-      .cards-grid {                                                                                                                                                                                                                                                                                                          
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-        max-width: 960px;                                                                                                                                                                                                                                                                                                    
-        margin: 48px auto 0;
-      }                                                                                                                                                                                                                                                                                                                      
-                  
-      .card {
-        background-color: #0b1a35;
-        border: 1px solid #1e3a6a;                                                                                                                                                                                                                                                                                           
-        border-top: 3px solid #c9a84c;                                                                                                                                                                                                                                                                                       
-        border-radius: 14px;                                                                                                                                                                                                                                                                                                 
-        padding: 32px 22px;                                                                                                                                                                                                                                                                                                  
-        text-align: right;                                                                                                                                                                                                                                                                                                   
-        transition: transform 0.22s, border-color 0.22s;
-      }                                                                                                                                                                                                                                                                                                                      
-                  
-      .card:hover {                                                                                                                                                                                                                                                                                                          
-        transform: translateY(-5px);
-        border-color: #c9a84c;
+      .hero {
+        padding-top: 60px;
       }
 
-      .card-icon {
-        font-size: 2rem;
-        margin-bottom: 16px;                                                                                                                                                                                                                                                                                                 
+      .hero p {
+        font-size: 1rem;
       }
-                                                                                                                                                                                                                                                                                                                             
-      .card-title {
-        font-family: 'Frank Ruhl Libre', serif;
-        font-size: 1.2rem;                                                                                                                                                                                                                                                                                                   
-        font-weight: 700;
-        color: #e0c060;                                                                                                                                                                                                                                                                                                      
-        margin-bottom: 10px;
-      }
+    }
+  </style>
+</head>
+<body>
 
-      .card-desc {                                                                                                                                                                                                                                                                                                           
-        font-size: 0.9rem;
-        color: #a8bcd8;                                                                                                                                                                                                                                                                                                      
-        line-height: 1.75;                                                                                                                                                                                                                                                                                                   
-      }
-                                                                                                                                                                                                                                                                                                                             
-      /* ── WELCOME ── */
-      .welcome-section {
-        background-color: #07112a;
-        border-top: 2px solid #1e3a6a;
-        border-bottom: 2px solid #1e3a6a;                                                                                                                                                                                                                                                                                    
-        padding: 72px 24px;                                                                                                                                                                                                                                                                                                  
-      }                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                             
-      .welcome-title {
-        font-family: 'Frank Ruhl Libre', serif;
-        font-size: clamp(1.5rem, 4vw, 2.2rem);
-        font-weight: 700;                                                                                                                                                                                                                                                                                                    
-        color: #ffffff;
-        margin-bottom: 24px;                                                                                                                                                                                                                                                                                                 
-      }           
-
-      .welcome-text {                                                                                                                                                                                                                                                                                                        
-        font-size: 1.05rem;
-        font-weight: 300;                                                                                                                                                                                                                                                                                                    
-        color: #a8bcd8;
-        line-height: 2;
-        max-width: 620px;                                                                                                                                                                                                                                                                                                    
-        margin: 0 auto 40px;
-      }                                                                                                                                                                                                                                                                                                                      
-                  
-      .welcome-btn {
-        display: inline-block;
-        border: 2px solid #c9a84c;                                                                                                                                                                                                                                                                                           
-        color: #e0c060;
-        font-family: 'Heebo', Arial, sans-serif;                                                                                                                                                                                                                                                                             
-        font-size: 1rem;                                                                                                                                                                                                                                                                                                     
-        font-weight: 600;
-        padding: 13px 38px;                                                                                                                                                                                                                                                                                                  
-        border-radius: 100px;                                                                                                                                                                                                                                                                                                
-        text-decoration: none;
-        transition: background 0.22s, color 0.22s;                                                                                                                                                                                                                                                                           
-      }           
-
-      .welcome-btn:hover {
-        background-color: #c9a84c;
-        color: #07112a;                                                                                                                                                                                                                                                                                                      
-      }
-                                                                                                                                                                                                                                                                                                                             
-      /* ── FOOTER ── */
-      footer {
-        background-color: #05091a;
-        border-top: 1px solid #1e3a6a;
-        padding: 28px 24px;                                                                                                                                                                                                                                                                                                  
-        font-size: 0.88rem;
-        color: #4a6080;                                                                                                                                                                                                                                                                                                      
-      }           
-                                                                                                                                                                                                                                                                                                                             
-      footer strong {
-        color: #c9a84c;
-      }
-                                                                                                                                                                                                                                                                                                                             
-      /* ── RESPONSIVE ── */
-      @media (max-width: 600px) {                                                                                                                                                                                                                                                                                            
-        nav {     
-          flex-direction: column;
-          align-items: flex-end;
-          gap: 14px;                                                                                                                                                                                                                                                                                                         
-        }
-                                                                                                                                                                                                                                                                                                                             
-        .hero {   
-          padding: 60px 20px 48px;
-        }                                                                                                                                                                                                                                                                                                                    
-   
-        .hero-btn {                                                                                                                                                                                                                                                                                                          
-          font-size: 1.05rem;
-          padding: 16px 40px;
-        }
-      }
-    </style>
-  </head>                                                                                                                                                                                                                                                                                                                    
-  <body>
-                                                                                                                                                                                                                                                                                                                             
-    <!-- NAV -->  
-    <nav>
-      <div class="nav-logo">שער ללימוד התנ״ך</div>
-      <ul class="nav-links">                                                                                                                                                                                                                                                                                                 
-        <li><a href="index.html">דף הבית</a></li>
-        <li><a href="#">חומרי לימוד</a></li>                                                                                                                                                                                                                                                                                 
-        <li><a href="#">דפי עבודה</a></li>
-        <li><a href="#">בחנים</a></li>                                                                                                                                                                                                                                                                                       
-        <li><a href="#">יצירת קשר</a></li>
-      </ul>                                                                                                                                                                                                                                                                                                                  
-    </nav>        
-                                                                                                                                                                                                                                                                                                                             
-    <!-- HERO --> 
-    <section class="hero">
-      <div class="hero-badge">לימוד התנ״ך</div>
-      <h1 class="hero-title">שער ללימוד <span>התנ״ך</span></h1>
-      <p class="hero-subtitle">מקום של לימוד, עיון, תרגול וחשיבה לתלמידים ולמורים</p>                                                                                                                                                                                                                                        
-      <a href="bereshit41.html" class="hero-btn">כניסה לחומרי הלימוד</a>                                                                                                                                                                                                                                                     
-    </section>                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                             
-    <!-- DIVIDER -->                                                                                                                                                                                                                                                                                                         
-    <div style="background-color:#0f2040; padding: 32px 0;">
-      <div class="divider"></div>                                                                                                                                                                                                                                                                                            
+  <nav>
+    <div class="nav-wrap">
+      <div class="nav-logo">שער לימוד התנ״ך</div>
+      <div class="nav-links">
+        <a href="index.html">דף הבית</a>
+        <a href="bereshit41.html">חומרי לימוד</a>
+        <a href="bereshit41.html">דפי עבודה</a>
+        <a href="yosef.html">חדר בריחה</a>
+      </div>
     </div>
-                                                                                                                                                                                                                                                                                                                             
-    <!-- CARDS -->                                                                                                                                                                                                                                                                                                           
-    <section class="cards-section">
-      <p class="section-sub">מה תמצאו כאן</p>                                                                                                                                                                                                                                                                                
-      <h2 class="section-title">כלים ותכנים ללימוד</h2>                                                                                                                                                                                                                                                                      
-      <div class="cards-grid">                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                             
-        <div class="card">                                                                                                                                                                                                                                                                                                   
-          <div class="card-icon">📖</div>
-          <div class="card-title">לימוד פרקי תנ״ך</div>
-          <p class="card-desc">עיון מעמיק בפרקים נבחרים עם הסברים, רקע היסטורי ופרשנויות מרכזיות לכל רמה.</p>                                                                                                                                                                                                                
-        </div>                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                             
-        <div class="card">                                                                                                                                                                                                                                                                                                   
-          <div class="card-icon">📝</div>
-          <div class="card-title">דפי עבודה אינטראקטיביים</div>                                                                                                                                                                                                                                                              
-          <p class="card-desc">דפי עבודה מגוונים לכל פרק עם שאלות הבנה, ניתוח טקסט ותרגילי חשיבה לעומק.</p>
-        </div>                                                                                                                                                                                                                                                                                                               
-   
-        <div class="card">                                                                                                                                                                                                                                                                                                   
-          <div class="card-icon">✅</div>
-          <div class="card-title">בחנים ומשימות</div>
-          <p class="card-desc">בחנים מקוונים לבדיקת הבנה ומשימות למעקב אחר התקדמות הלמידה של כל תלמיד.</p>                                                                                                                                                                                                                   
-        </div>                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                             
-        <div class="card">                                                                                                                                                                                                                                                                                                   
-          <div class="card-icon">💡</div>
-          <div class="card-title">חומרי עזר לתלמידים ולמורים</div>
-          <p class="card-desc">מאגר עשיר של מפות, ציר זמן, מילון מושגים ומדריכים פדגוגיים למורה.</p>                                                                                                                                                                                                                         
-        </div>                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                             
-        <div class="card">                                                                                                                                                                                                                                                                                                   
-          <div class="card-icon">🔐</div>
-          <div class="card-title"><a href="yosef.html" style="color:#e0c060; text-decoration:none;">חדר בריחה</a></div>
-          <p class="card-desc">פעילות אינטראקטיבית על סיפור יוסף, עם משימות, שאלות, רמזים ואתגרי חשיבה.</p>                                                                                                                                                                                                                  
-        </div>                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                             
-      </div>                                                                                                                                                                                                                                                                                                                 
-    </section>    
+  </nav>
 
-    <!-- WELCOME -->                                                                                                                                                                                                                                                                                                         
-    <section class="welcome-section">
-      <h2 class="welcome-title">ברוכים הבאים לעולם לימוד התנ״ך</h2>                                                                                                                                                                                                                                                          
+  <section class="hero">
+    <div class="hero-badge">לימוד תנ״ך</div>
+    <h1>שער <span>ללימוד התנ״ך</span></h1>
+    <p>
+      מקום מסודר ללמידה, תרגול והעמקה. כאן תמצאו חומרי לימוד, דפי עבודה ופעילויות לתלמידים בצורה ברורה, נגישה ומזמינה.
+    </p>
+    <a href="bereshit41.html" class="hero-btn">כניסה לחומרי הלימוד</a>
+  </section>
+
+  <div class="divider-wrap">
+    <div class="divider"></div>
+  </div>
+
+  <section class="cards-section">
+    <p class="section-sub">מה תמצאו כאן</p>
+    <h2 class="section-title">כלים ותכנים ללימוד</h2>
+
+    <div class="cards-grid">
+      <a href="bereshit41.html" class="card-link">
+        <div class="card-icon">📖</div>
+        <div class="card-title">לימוד פרקי תנ״ך</div>
+        <p class="card-desc">עיון מעמיק בפרקים נבחרים עם הסברים, רקע היסטורי ופרשנויות מרכזיות.</p>
+      </a>
+
+      <a href="bereshit41.html" class="card-link">
+        <div class="card-icon">📝</div>
+        <div class="card-title">דפי עבודה אינטראקטיביים</div>
+        <p class="card-desc">דפי עבודה עם שאלות הבנה, ניתוח טקסט ותרגילי חשיבה לתלמיד.</p>
+      </a>
+
+      <div class="card">
+        <div class="card-icon">✅</div>
+        <div class="card-title">בחנים ומשימות</div>
+        <p class="card-desc">אזור ייעודי לבחנים ולמשימות שיתווסף בהמשך.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <div class="card-title">חומרי עזר</div>
+        <p class="card-desc">מפות, מושגים, צירי זמן והכוונה פדגוגית לתלמידים ולמורים.</p>
+      </div>
+
+      <a href="yosef.html" class="card-link">
+        <div class="card-icon">🔐</div>
+        <div class="card-title">חדר בריחה</div>
+        <p class="card-desc">פעילות אינטראקטיבית על סיפור יוסף עם רמזים, משימות ואתגרי חשיבה.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="welcome-section">
+    <div class="welcome-box">
+      <h2 class="welcome-title">ברוכים הבאים לעולם לימוד התנ״ך</h2>
       <p class="welcome-text">
-        התנ״ך הוא לא רק ספר — הוא שורש של תרבות, זהות, שפה וערכים.<br>                                                                                                                                                                                                                                                       
-        כאן תמצאו מרחב לימוד שנבנה במיוחד כדי לגרום לכם לחקור, לשאול ולהבין.<br>
-        בין אם אתם תלמידים המתכוננים לבחינה, ובין אם מורים המחפשים כלים — האתר הזה בנוי בשבילכם.                                                                                                                                                                                                                             
-      </p>                                                                                                                                                                                                                                                                                                                   
-      <a href="bereshit41.html" class="welcome-btn">התחילו ללמוד עכשיו</a>                                                                                                                                                                                                                                                   
-    </section>                                                                                                                                                                                                                                                                                                               
-                  
-    <!-- FOOTER -->
-    <footer>
-      <strong>שער ללימוד התנ״ך</strong> &nbsp;|&nbsp; אתר לימוד תנ״ך לתלמידים ולמורים &nbsp;|&nbsp; © 2024 כל הזכויות שמורות                                                                                                                                                                                                 
-    </footer>                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                             
-  </body>                                                                                                                                                                                                                                                                                                                    
-  </html>       
+        האתר נבנה כדי לאפשר לימוד נעים, ברור ומסודר. אפשר להתחיל בחומרי הלימוד, לעבור לדפי העבודה, או להיכנס ישירות לחדר הבריחה.
+      </p>
+      <a href="bereshit41.html" class="welcome-btn">התחילו ללמוד עכשיו</a>
+    </div>
+  </section>
+
+  <footer>
+    <strong>שער ללימוד התנ״ך</strong> &nbsp; © 2026
+  </footer>
+
+</body>
+</html>
