@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>פעילות על בראשית מ״א</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fafc, #dbeafe);
+      color: #1e293b;
+      min-height: 100vh;
+      padding: 24px 14px 40px;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 22px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+      padding: 28px 20px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 14px;
+      font-size: 2rem;
+      color: #1d4ed8;
+    }
+
+    .intro {
+      text-align: center;
+      line-height: 1.8;
+      color: #334155;
+      margin-bottom: 10px;
+    }
+
+    .question {
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .question:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .question h2 {
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: #0f172a;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      line-height: 1.7;
+      cursor: pointer;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 22px;
+    }
+
+    button, a.back-btn {
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    button:hover, a.back-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .explanation {
+      margin-top: 18px;
+      background: #eff6ff;
+      border-radius: 16px;
+      padding: 16px;
+      line-height: 1.8;
+      color: #1e3a8a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>פעילות קצרה על בראשית מ״א</h1>
+      <p class="intro">
+        בפרק זה פרעה חולם שני חלומות, יוסף פותר אותם, ומציע דרך להתמודד עם שנות הרעב.
+        ענו על השאלות ובדקו את עצמכם.
+      </p>
+    </div>
+
+    <div class="card">
+      <form id="quizForm">
+        <div class="question">
+          <h2>1. מה מסמלים שבע הפרות השמנות בחלום פרעה?</h2>
+          <label><input type="radio" name="q1" value="a"> שבע שנות מלחמה</label>
+          <label><input type="radio" name="q1" value="b"> שבע שנות שובע</label>
+          <label><input type="radio" name="q1" value="c"> שבע ערים במצרים</label>
+        </div>
+
+        <div class="question">
+          <h2>2. מדוע פרעה מתרשם מיוסף במיוחד?</h2>
+          <label><input type="radio" name="q2" value="a"> מפני שיוסף ידע לכתוב מכתבים</label>
+          <label><input type="radio" name="q2" value="b"> מפני שיוסף רק סיפר חלום נוסף</label>
+          <label><input type="radio" name="q2" value="c"> מפני שיוסף גם פתר את החלום וגם נתן עצה מעשית</label>
+        </div>
+
+        <div class="question">
+          <h2>3. מהו הרעיון המרכזי של הפרק?</h2>
+          <label><input type="radio" name="q3" value="a"> יוסף עובר מעבד ואסיר לאדם בעל סמכות והנהגה</label>
+          <label><input type="radio" name="q3" value="b"> האחים חוזרים מיד לארץ כנען</label>
+          <label><input type="radio" name="q3" value="c"> פרעה עוזב את מצרים</label>
+        </div>
+
+        <div class="buttons">
+          <button type="button" onclick="checkQuiz()">בדוק תשובות</button>
+          <a class="back-btn" href="index.html">חזרה לדף הבית</a>
+        </div>
+      </form>
+
+      <div id="result" class="result"></div>
+      <div class="explanation">
+        למחשבה: יוסף אינו רק מפרש חלומות. הוא מצטייר בפרק כאדם שיודע להבין מציאות, לחשוב קדימה, ולהציע פתרון מעשי. לכן פרעה רואה בו מנהיג.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function checkQuiz() {
+      let score = 0;
+      const answers = {
+        q1: "b",
+        q2: "c",
+        q3: "a"
+      };
+
+      for (let key in answers) {
+        const selected = document.querySelector('input[name="' + key + '"]:checked');
+        if (selected && selected.value === answers[key]) {
+          score++;
+        }
+      }
+
+      const result = document.getElementById("result");
+      result.textContent = "הציון שלך: " + score + " מתוך 3";
+    }
+  </script>
+</body>
+</html>
