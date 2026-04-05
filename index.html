@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>האתר הלימודי של טל</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+      color: white;
+      min-height: 100vh;
+      padding: 24px 14px 50px;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      padding: 34px 24px;
+      text-align: center;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: #e2e8f0;
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin: 26px 0 18px;
+      font-weight: bold;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      color: #1e293b;
+      border-radius: 20px;
+      padding: 22px 18px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      line-height: 1.8;
+      font-size: 0.98rem;
+      color: #334155;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: bold;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .coming {
+      background: #94a3b8;
+      cursor: default;
+    }
+
+    .coming:hover {
+      background: #94a3b8;
+      transform: none;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 38px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .card {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <section class="hero">
+      <h1>ברוכים הבאים לאתר הלימודי</h1>
+      <p>
+        כאן תמצאו פעילויות אינטראקטיביות, משחקים לימודיים וחדרי בריחה בנושאי תנ״ך.
+        האתר נבנה כדי לאפשר למידה חווייתית, חשיבה, הבנת הסיפור המקראי ודיון ערכי.
+      </p>
+    </section>
+
+    <h2 class="section-title">הפעילויות באתר</h2>
+
+    <div class="grid">
+      <div class="card">
+        <div>
+          <h2>חדר בריחה: סיפורי יוסף</h2>
+          <p>
+            פעילות אינטראקטיבית על בראשית ל״ז–מ״ה.  
+            כוללת חידות, שאלות הבנה, פרשנות וחשיבה ערכית.
+          </p>
+        </div>
+        <a class="btn" href="yosef.html">כניסה לפעילות</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <h2>פעילות נוספת</h2>
+          <p>
+            כאן נוכל להוסיף בהמשך עוד משחק, דף עבודה או משימה אינטראקטיבית לתלמידים.
+          </p>
+        </div>
+        <a class="btn coming" href="javascript:void(0)">בקרוב</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <h2>פעילות נוספת</h2>
+          <p>
+            אפשר להוסיף כאן בהמשך חדר בריחה נוסף, משימת חקר או משחק לימודי חדש.
+          </p>
+        </div>
+        <a class="btn coming" href="javascript:void(0)">בקרוב</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      נבנה ללמידה חווייתית בכיתה ובבית
+    </div>
+
+  </div>
+</body>
+</html>
