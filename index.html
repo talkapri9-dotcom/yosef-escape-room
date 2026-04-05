@@ -16,64 +16,75 @@
       background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
       color: white;
       min-height: 100vh;
-      padding: 24px 14px 50px;
       direction: rtl;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
+      padding: 28px 16px 50px;
     }
 
     .hero {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 24px;
-      padding: 34px 24px;
+      border-radius: 26px;
+      padding: 42px 24px;
       text-align: center;
       box-shadow: 0 18px 40px rgba(0,0,0,0.25);
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .hero h1 {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       margin-bottom: 14px;
     }
 
     .hero p {
       font-size: 1.08rem;
       color: #e2e8f0;
-      line-height: 1.8;
-      max-width: 700px;
+      line-height: 1.9;
+      max-width: 760px;
       margin: 0 auto;
     }
 
     .section-title {
-      font-size: 1.4rem;
-      margin: 26px 0 18px;
+      font-size: 1.5rem;
+      margin: 28px 0 18px;
       font-weight: bold;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
     .card {
       background: white;
       color: #1e293b;
-      border-radius: 20px;
-      padding: 22px 18px;
+      border-radius: 22px;
+      padding: 24px 20px;
       box-shadow: 0 14px 30px rgba(0,0,0,0.18);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 220px;
+      min-height: 260px;
+    }
+
+    .card .tag {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      font-weight: bold;
     }
 
     .card h2 {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       margin-bottom: 12px;
     }
 
@@ -81,7 +92,7 @@
       line-height: 1.8;
       font-size: 0.98rem;
       color: #334155;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .btn {
@@ -111,24 +122,30 @@
       transform: none;
     }
 
+    .info-box {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px;
+      padding: 22px 18px;
+      margin-top: 28px;
+      color: #e2e8f0;
+      line-height: 1.9;
+    }
+
     .footer {
       text-align: center;
-      margin-top: 38px;
+      margin-top: 34px;
       color: #cbd5e1;
       font-size: 0.95rem;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       .hero h1 {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
       }
 
       .hero p {
         font-size: 1rem;
-      }
-
-      .card {
-        min-height: auto;
       }
     }
   </style>
@@ -137,22 +154,23 @@
   <div class="container">
 
     <section class="hero">
-      <h1>ברוכים הבאים לאתר הלימודי</h1>
+      <h1>האתר הלימודי של טל</h1>
       <p>
-        כאן תמצאו פעילויות אינטראקטיביות, משחקים לימודיים וחדרי בריחה בנושאי תנ״ך.
-        האתר נבנה כדי לאפשר למידה חווייתית, חשיבה, הבנת הסיפור המקראי ודיון ערכי.
+        ברוכים הבאים לאתר פעילויות אינטראקטיביות ללימוד תנ״ך.
+        כאן תוכלו למצוא חדרי בריחה, משחקי למידה, דפי פעילות ותכנים חווייתיים המיועדים לתלמידים.
       </p>
     </section>
 
-    <h2 class="section-title">הפעילויות באתר</h2>
+    <h2 class="section-title">פעילויות זמינות</h2>
 
     <div class="grid">
       <div class="card">
         <div>
+          <span class="tag">כיתה ז׳</span>
           <h2>חדר בריחה: סיפורי יוסף</h2>
           <p>
-            פעילות אינטראקטיבית על בראשית ל״ז–מ״ה.  
-            כוללת חידות, שאלות הבנה, פרשנות וחשיבה ערכית.
+            פעילות אינטראקטיבית על סיפורי יוסף בספר בראשית.
+            במהלך המשחק התלמידים פותרים חידות, עונים על שאלות הבנה ופרשנות, ומתקדמים דרך תחנות מרכזיות בסיפור.
           </p>
         </div>
         <a class="btn" href="yosef.html">כניסה לפעילות</a>
@@ -160,9 +178,10 @@
 
       <div class="card">
         <div>
-          <h2>פעילות נוספת</h2>
+          <span class="tag">בקרוב</span>
+          <h2>פעילות חדשה</h2>
           <p>
-            כאן נוכל להוסיף בהמשך עוד משחק, דף עבודה או משימה אינטראקטיבית לתלמידים.
+            כאן ניתן יהיה להוסיף בהמשך חדר בריחה נוסף, דף עבודה אינטראקטיבי או משחק לימודי חדש.
           </p>
         </div>
         <a class="btn coming" href="javascript:void(0)">בקרוב</a>
@@ -170,13 +189,19 @@
 
       <div class="card">
         <div>
+          <span class="tag">בקרוב</span>
           <h2>פעילות נוספת</h2>
           <p>
-            אפשר להוסיף כאן בהמשך חדר בריחה נוסף, משימת חקר או משחק לימודי חדש.
+            מקום מוכן להוספת תוכן חדש בהמשך, כגון פרקי שמואל, שופטים, תהילים או פעילויות ערכיות.
           </p>
         </div>
         <a class="btn coming" href="javascript:void(0)">בקרוב</a>
       </div>
+    </div>
+
+    <div class="info-box">
+      האתר בנוי כך שניתן להוסיף אליו בהמשך פעילויות חדשות מבלי לשנות את הקישור הראשי.
+      כל פעילות חדשה יכולה להופיע כאן ככרטיס נוסף.
     </div>
 
     <div class="footer">
