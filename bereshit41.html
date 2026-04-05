@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>פעילות על בראשית מ״א</title>
+  <title>דף עבודה: בראשית מ״א</title>
   <style>
     * {
       box-sizing: border-box;
@@ -21,7 +21,7 @@
     }
 
     .container {
-      max-width: 850px;
+      max-width: 950px;
       margin: 0 auto;
     }
 
@@ -42,13 +42,28 @@
 
     .intro {
       text-align: center;
-      line-height: 1.8;
+      line-height: 1.9;
       color: #334155;
       margin-bottom: 10px;
     }
 
+    .student-box {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .student-box input {
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      width: 100%;
+    }
+
     .question {
-      margin-bottom: 26px;
+      margin-bottom: 28px;
       padding-bottom: 18px;
       border-bottom: 1px solid #e2e8f0;
     }
@@ -60,16 +75,29 @@
     }
 
     .question h2 {
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       margin-bottom: 12px;
       color: #0f172a;
+      line-height: 1.8;
     }
 
     label {
       display: block;
       margin: 8px 0;
-      line-height: 1.7;
+      line-height: 1.8;
       cursor: pointer;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid #cbd5e1;
+      font-size: 1rem;
+      margin-top: 10px;
+      font-family: Arial, sans-serif;
+      resize: vertical;
     }
 
     .buttons {
@@ -77,7 +105,7 @@
       gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 22px;
+      margin-top: 24px;
     }
 
     button, a.back-btn {
@@ -99,64 +127,171 @@
     .result {
       margin-top: 22px;
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: bold;
+      color: #0f172a;
     }
 
-    .explanation {
-      margin-top: 18px;
+    .teacher-note {
+      margin-top: 20px;
       background: #eff6ff;
       border-radius: 16px;
       padding: 16px;
-      line-height: 1.8;
+      line-height: 1.9;
       color: #1e3a8a;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+      color: #1e293b;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .student-box {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
+
     <div class="card">
-      <h1>פעילות קצרה על בראשית מ״א</h1>
+      <h1>דף עבודה: בראשית מ״א</h1>
       <p class="intro">
-        בפרק זה פרעה חולם שני חלומות, יוסף פותר אותם, ומציע דרך להתמודד עם שנות הרעב.
-        ענו על השאלות ובדקו את עצמכם.
+        דף עבודה אינטראקטיבי על חלומות פרעה, פתרון יוסף ועלייתו לגדולה.
+        ענו על השאלות, בדקו את עצמכם, וחשבו גם על משמעותו הערכית של הפרק.
       </p>
+
+      <div class="student-box">
+        <input type="text" placeholder="שם התלמיד/ה">
+        <input type="text" placeholder="כיתה">
+      </div>
     </div>
 
     <div class="card">
+      <h2 class="section-title">שאלות אמריקאיות</h2>
+
       <form id="quizForm">
+
         <div class="question">
-          <h2>1. מה מסמלים שבע הפרות השמנות בחלום פרעה?</h2>
+          <h2>1. מה מסמלות שבע הפרות השמנות?</h2>
           <label><input type="radio" name="q1" value="a"> שבע שנות מלחמה</label>
           <label><input type="radio" name="q1" value="b"> שבע שנות שובע</label>
           <label><input type="radio" name="q1" value="c"> שבע ערים במצרים</label>
         </div>
 
         <div class="question">
-          <h2>2. מדוע פרעה מתרשם מיוסף במיוחד?</h2>
-          <label><input type="radio" name="q2" value="a"> מפני שיוסף ידע לכתוב מכתבים</label>
-          <label><input type="radio" name="q2" value="b"> מפני שיוסף רק סיפר חלום נוסף</label>
-          <label><input type="radio" name="q2" value="c"> מפני שיוסף גם פתר את החלום וגם נתן עצה מעשית</label>
+          <h2>2. מה מסמלות שבע הפרות הרזות?</h2>
+          <label><input type="radio" name="q2" value="a"> שבע שנות רעב</label>
+          <label><input type="radio" name="q2" value="b"> שבע שנות שמחה</label>
+          <label><input type="radio" name="q2" value="c"> שבע ממלכות</label>
         </div>
 
         <div class="question">
-          <h2>3. מהו הרעיון המרכזי של הפרק?</h2>
-          <label><input type="radio" name="q3" value="a"> יוסף עובר מעבד ואסיר לאדם בעל סמכות והנהגה</label>
-          <label><input type="radio" name="q3" value="b"> האחים חוזרים מיד לארץ כנען</label>
-          <label><input type="radio" name="q3" value="c"> פרעה עוזב את מצרים</label>
+          <h2>3. מי נזכר ביוסף ומזכיר אותו לפרעה?</h2>
+          <label><input type="radio" name="q3" value="a"> פוטיפר</label>
+          <label><input type="radio" name="q3" value="b"> שר האופים</label>
+          <label><input type="radio" name="q3" value="c"> שר המשקים</label>
+        </div>
+
+        <div class="question">
+          <h2>4. מה עושה יוסף לפני שהוא מובא אל פרעה?</h2>
+          <label><input type="radio" name="q4" value="a"> מתגלח ומחליף שמלות</label>
+          <label><input type="radio" name="q4" value="b"> בורח מן הכלא</label>
+          <label><input type="radio" name="q4" value="c"> שולח מכתב ליעקב</label>
+        </div>
+
+        <div class="question">
+          <h2>5. כיצד יוסף פותח את תשובתו לפרעה?</h2>
+          <label><input type="radio" name="q5" value="a"> "אני יודע הכול"</label>
+          <label><input type="radio" name="q5" value="b"> "בלעדי, אלוהים יענה את שלום פרעה"</label>
+          <label><input type="radio" name="q5" value="c"> "ספר לי אחר כך"</label>
+        </div>
+
+        <div class="question">
+          <h2>6. מדוע פרעה מתרשם מיוסף במיוחד?</h2>
+          <label><input type="radio" name="q6" value="a"> כי יוסף רק פותר חלום</label>
+          <label><input type="radio" name="q6" value="b"> כי יוסף גם פותר את החלום וגם מציע תכנית פעולה</label>
+          <label><input type="radio" name="q6" value="c"> כי יוסף מבקש להיות מלך</label>
+        </div>
+
+        <div class="question">
+          <h2>7. מה מציע יוסף לעשות בשנות השובע?</h2>
+          <label><input type="radio" name="q7" value="a"> לאגור מזון</label>
+          <label><input type="radio" name="q7" value="b"> לחלק את הכול מיד</label>
+          <label><input type="radio" name="q7" value="c"> לעזוב את מצרים</label>
+        </div>
+
+        <div class="question">
+          <h2>8. איזה תפקיד מקבל יוסף?</h2>
+          <label><input type="radio" name="q8" value="a"> רועה צאן</label>
+          <label><input type="radio" name="q8" value="b"> משנה למלך</label>
+          <label><input type="radio" name="q8" value="c"> כהן</label>
+        </div>
+
+        <div class="question">
+          <h2>9. איזה שם חדש נותן פרעה ליוסף?</h2>
+          <label><input type="radio" name="q9" value="a"> צפנת פענח</label>
+          <label><input type="radio" name="q9" value="b"> אביתר</label>
+          <label><input type="radio" name="q9" value="c"> צדוק</label>
+        </div>
+
+        <div class="question">
+          <h2>10. מהו הרעיון המרכזי של הפרק?</h2>
+          <label><input type="radio" name="q10" value="a"> יוסף עובר מעבד ואסיר למנהיג</label>
+          <label><input type="radio" name="q10" value="b"> האחים חוזרים מיד לכנען</label>
+          <label><input type="radio" name="q10" value="c"> פרעה נודד לארץ אחרת</label>
         </div>
 
         <div class="buttons">
           <button type="button" onclick="checkQuiz()">בדוק תשובות</button>
           <a class="back-btn" href="index.html">חזרה לדף הבית</a>
         </div>
-      </form>
 
-      <div id="result" class="result"></div>
-      <div class="explanation">
-        למחשבה: יוסף אינו רק מפרש חלומות. הוא מצטייר בפרק כאדם שיודע להבין מציאות, לחשוב קדימה, ולהציע פתרון מעשי. לכן פרעה רואה בו מנהיג.
+        <div id="result" class="result"></div>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">שאלות פתוחות למחשבה</h2>
+
+      <div class="question">
+        <h2>11. מה מלמדת תשובתו של יוסף "בלעדי, אלוהים יענה את שלום פרעה" על אופיו של יוסף?</h2>
+        <textarea placeholder="כתוב/כתבי כאן תשובה..."></textarea>
+      </div>
+
+      <div class="question">
+        <h2>12. מדוע לדעתך פרעה מוכן להפקיד בידי יוסף סמכות כה גדולה?</h2>
+        <textarea placeholder="כתוב/כתבי כאן תשובה..."></textarea>
+      </div>
+
+      <div class="question">
+        <h2>13. האם לדעתך יוסף מוצג כאן יותר כחכם, יותר כמאמין, או יותר כמנהיג? נמק.</h2>
+        <textarea placeholder="כתוב/כתבי כאן תשובה..."></textarea>
+      </div>
+
+      <div class="question">
+        <h2>14. כיצד הפרק מדגים את הרעיון שלפעמים משבר יכול להפוך להזדמנות?</h2>
+        <textarea placeholder="כתוב/כתבי כאן תשובה..."></textarea>
+      </div>
+
+      <div class="question">
+        <h2>15. איזה מסר ערכי אפשר ללמוד מן הדרך שבה יוסף פועל בפרק?</h2>
+        <textarea placeholder="כתוב/כתבי כאן תשובה..."></textarea>
+      </div>
+
+      <div class="teacher-note">
+        למורה: שאלות 11–15 אינן נבדקות אוטומטית. הן מיועדות להבנה, פרשנות וחשיבה ערכית.
       </div>
     </div>
+
   </div>
 
   <script>
@@ -164,8 +299,15 @@
       let score = 0;
       const answers = {
         q1: "b",
-        q2: "c",
-        q3: "a"
+        q2: "a",
+        q3: "c",
+        q4: "a",
+        q5: "b",
+        q6: "b",
+        q7: "a",
+        q8: "b",
+        q9: "a",
+        q10: "a"
       };
 
       for (let key in answers) {
@@ -176,7 +318,7 @@
       }
 
       const result = document.getElementById("result");
-      result.textContent = "הציון שלך: " + score + " מתוך 3";
+      result.textContent = "הציון האוטומטי שלך: " + score + " מתוך 10";
     }
   </script>
 </body>
